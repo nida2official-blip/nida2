@@ -1,3 +1,3 @@
-<torrent_config port_range="6881~6891" bandwidth_range="5:10:25:50:75:100:150:200:250:500:1000" foreground_speed="0" background_speed="10" run_path="serveradı.bin" max_uploads_per_session="16" max_connections_per_session="200" max_uploads_per_torrent="4" max_connections_per_torrent="50" seeding_duration="21600" cur_patcher_path="metin2.exe" new_patcher_path="metin2.exe" new_patcher_crc32="0x7c81fbec">
+<torrent_config port_range="6881~6891" bandwidth_range="5:10:25:50:75:100:150:200:250:500:1000" foreground_speed="0" background_speed="10" run_path="legan2.bin" max_uploads_per_session="16" max_connections_per_session="200" max_uploads_per_torrent="4" max_connections_per_torrent="50" seeding_duration="21600" cur_patcher_path="metin2.exe" new_patcher_path="metin2.exe" new_patcher_crc32="0x7c81fbec">
 	<foreground_patch crcpatch_url="http://nida2.nida2official.workers.dev/" crcversion="0.0.0.1"/> 
    </torrent_config>

@@ -12,8 +12,9 @@ body {
   background-size: cover;
 }
 
-.container {
-  width: 1170px;
+.container{
+    width:96%;
+    max-width:1500px;
 }
 /* header
 ----------------------------------------*/

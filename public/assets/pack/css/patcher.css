@@ -1,77 +1,153 @@
-body{
-	color: #f4cc6a;
-    background: #000;
-    background: url(../img/background5.jpg) no-repeat;
-    width:100%;
-    height:100%;
-    min-width:1188px;
-    min-height:548px;
-    overflow:hidden;
-    display: table;
+html,
+body {
+    width: 800px;
+    height: 600px;
     margin: 0;
     padding: 0;
-	font-family: 'Open Sans', sans-serif;
+    overflow: hidden;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    color: #edc878;
+    font-family: "Open Sans", Arial, sans-serif;
     font-size: 12px;
-}
-.header{
-	margin-top:10px;
-	margin-bottom:10px;
-	position:relative;
-}
-.header .logo{
-	margin-top:20px;
-	width:300px;
-}
-.header ul {
-    width: auto !important;
-	margin-top:10px;
-}
-.header li a {
-	color: #f4cc6a;
-	border-bottom:0px;
+    background: #080604 url("../img/background5.jpg") center center / cover no-repeat;
 }
 
-.header li a:hover {
-	color: #fff4d9;
+.launcher-page {
+    position: relative;
+    width: 800px;
+    height: 600px;
+    padding: 18px 22px 20px;
+    background:
+        linear-gradient(to bottom, rgba(4, 3, 2, .08), rgba(4, 3, 2, .22)),
+        radial-gradient(circle at 50% 35%, rgba(223, 165, 72, .08), transparent 58%);
 }
 
-.header li a span {
-	color: #f4cc6a;
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 88px;
+    padding: 0 6px 10px;
+    border-bottom: 1px solid rgba(195, 139, 48, .46);
 }
 
-.header li a span:hover {
-	color: #fff4d9;
+.brand {
+    display: block;
+    width: 285px;
+    line-height: 0;
 }
 
-.content div ul li {
-	background: rgba(0,0,0,0.6);
-	border:0px;
-	border-bottom: 1px solid rgba(244,204,106,0.5);
-	border-bottom-right-radius: 4px;
-	border-bottom-left-radius: 4px;
-}
-.content div ul li span  {
-	background: rgba(244,204,106,0.6);
-	color:#000;
-	font-weight: 400;
-}
-.new {
-	background: rgba(0,0,0,0.3);
-	border: 1px solid #716c5a;
+.brand img {
+    display: block;
+    width: 285px;
+    height: auto;
 }
 
-.content-text {
-	color:#f4cb42;
+.social-menu {
+    display: flex;
+    align-items: center;
+    gap: 13px;
 }
 
-.content-text:hover {
-	color:#fff4d9;
-	text-decoration:none;
+.social-menu a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border: 1px solid rgba(205, 150, 57, .45);
+    background: rgba(6, 5, 4, .76);
+    box-shadow: 0 0 12px rgba(0, 0, 0, .7);
+    transition: transform .15s ease, border-color .15s ease, filter .15s ease;
 }
 
-.section-title{
-	font-size:16px;
-	border-bottom: 1px solid #7a4e21;
-	padding-bottom:10px;
-	margin-bottom:10px;
+.social-menu a:hover {
+    transform: translateY(-2px);
+    border-color: #e7bd63;
+    filter: brightness(1.15);
+}
+
+.social-menu img {
+    display: block;
+    max-width: 27px;
+    max-height: 27px;
+}
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 355px;
+    padding: 20px 8px 12px;
+}
+
+.announcement-image {
+    display: block;
+    width: 100%;
+    max-width: 756px;
+    max-height: 330px;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 14px rgba(0, 0, 0, .72));
+}
+
+.bottom-panels {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 14px;
+    height: 112px;
+}
+
+.panel {
+    min-width: 0;
+    padding: 12px 15px;
+    border: 1px solid rgba(173, 119, 40, .8);
+    background: linear-gradient(to bottom, rgba(18, 14, 10, .92), rgba(5, 4, 3, .93));
+    box-shadow:
+        inset 0 0 0 1px rgba(230, 179, 84, .08),
+        0 6px 18px rgba(0, 0, 0, .48);
+}
+
+.panel h2 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 9px;
+    padding-bottom: 8px;
+    color: #f1cc7b;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(177, 118, 37, .55);
+}
+
+.panel h2 img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+}
+
+.panel a,
+.panel p {
+    margin: 0;
+    color: #d9bd7d;
+    font-size: 12px;
+    line-height: 1.55;
+    text-decoration: none;
+}
+
+.panel a:hover {
+    color: #fff0bf;
+}
+
+.panel strong {
+    color: #f2d48f;
+    font-weight: 600;
 }

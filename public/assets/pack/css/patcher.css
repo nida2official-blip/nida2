@@ -15,7 +15,7 @@ body {
     color: #edc878;
     font-family: "Open Sans", Arial, sans-serif;
     font-size: 12px;
-    background: #080604 url("../img/background5.jpg") center center / cover no-repeat;
+    background: none;
 }
 
 .launcher-page {

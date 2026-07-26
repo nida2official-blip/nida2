@@ -80,16 +80,24 @@
             color: #fff0a0;
         }
 
-        .date {
-            position: absolute;
-            right: 1px;
-            top: 0;
-            width: 58px;
-            color: #c7a769;
-            font-size: 8px;
-            font-weight: normal;
-            text-align: right;
-        }
+.date {
+    position: absolute;
+    right: 1px;
+    top: 0;
+
+    /* Önceden 58px idi */
+    width: 52px;
+
+    color: #c7a769;
+
+    /* Tarih yazısını büyüttük */
+    font-size: 10px;
+    font-weight: normal;
+    line-height: 18px;
+
+    text-align: right;
+    white-space: nowrap;
+}
 
         .message {
             padding-top: 18px;

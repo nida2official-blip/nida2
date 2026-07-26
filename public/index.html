@@ -1,195 +1,109 @@
 <!DOCTYPE html>
-    <meta charset="utf-8">
-    <meta content="IE=edge" http-equiv="X-UA-Compatible">
-    <title>Nida2 Launcher</title>
-    <meta content="width=device-width, initial-scale=1" name="viewport">
-	<link rel="stylesheet" type="text/css" href="assets/frontend/css/base.css">
-	<link rel="stylesheet" type="text/css" href="assets/frontend/css/fonts.css">
-	<link rel="stylesheet" type="text/css" href="assets/plugins/bootstrap-3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="assets/plugins/font-awesome-4.6.3/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="assets/frontend/css/master.css">
-	<link rel="stylesheet" type="text/css" href="assets/frontend/css/helper.min.css">
-	<link rel="stylesheet" type="text/css" href="assets/pack/css/patcher.css">
-	<link rel="stylesheet" href="assets/plugins/jquery-modal/jquery.modal.css" type="text/css" media="screen">
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=222, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Legan2 Duyurular</title>
 
-<style type="text/css">
-/*
- * Launcher duyuru alanı
- * Eski TorrentPatch motorunda #000000 tam siyah kullanılmamalıdır.
- */
-.launcher-announcements {
-    min-height: 235px;
-    background: #080604;
-}
+    <style>
+        html, body {
+            width: 222px;
+            height: 103px;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: #080604;
+            font-family: Georgia, "Times New Roman", serif;
+        }
 
-#launcher-announcement-list {
-    margin: 0;
-    padding: 0;
-}
+        * {
+            box-sizing: border-box;
+        }
 
-#launcher-announcement-list .list-group-item {
-    position: relative;
-    min-height: 45px;
-    margin: 0 0 8px 0;
-    padding: 8px 92px 8px 30px;
-    overflow: hidden;
-    background: #120d08;
-    border: 1px solid #5f421d;
-    border-radius: 0;
-    color: #f4cb42;
-}
+        .notices {
+            width: 222px;
+            height: 103px;
+            padding: 5px 7px;
+            overflow: hidden;
+            background: #080604;
+        }
 
-#launcher-announcement-list .list-group-item:last-child {
-    margin-bottom: 0;
-}
+        .notices h2 {
+            height: 21px;
+            margin: 0 0 3px 0;
+            padding: 0 0 2px 0;
+            color: #edc35c;
+            font-size: 14px;
+            line-height: 18px;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #60451d;
+        }
 
-.launcher-announcement-bullet {
-    position: absolute;
-    left: 10px;
-    top: 11px;
-    color: #d39a31;
-    font-size: 12px;
-}
+        .notice-item {
+            position: relative;
+            height: 18px;
+            padding-left: 13px;
+            padding-right: 62px;
+            overflow: hidden;
+            color: #e6b949;
+            font-size: 10px;
+            font-weight: bold;
+            line-height: 18px;
+            white-space: nowrap;
+        }
 
-.launcher-announcement-title {
-    display: block;
-    overflow: hidden;
-    color: #f4cb42;
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 27px;
-    text-decoration: none;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
+        .bullet {
+            position: absolute;
+            left: 1px;
+            top: 0;
+            color: #c58b29;
+            font-size: 9px;
+        }
 
-.launcher-announcement-title:hover {
-    color: #fff4d9;
-    text-decoration: none;
-}
+        .title {
+            display: block;
+            overflow: hidden;
+            color: #e6b949;
+            text-decoration: none;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
 
-.launcher-announcement-date {
-    position: absolute;
-    right: 10px;
-    top: 8px;
-    width: 78px;
-    color: #c7a769;
-    font-size: 10px;
-    line-height: 27px;
-    text-align: right;
-}
+        .title:hover {
+            color: #fff0a0;
+        }
 
-.launcher-announcement-message {
-    padding-right: 8px !important;
-    padding-left: 8px !important;
-    color: #c7a769 !important;
-    text-align: center;
-}
-</style>
+        .date {
+            position: absolute;
+            right: 1px;
+            top: 0;
+            width: 58px;
+            color: #c7a769;
+            font-size: 8px;
+            font-weight: normal;
+            text-align: right;
+        }
 
+        .message {
+            padding-top: 18px;
+            color: #b99a5d;
+            font-size: 10px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-<!-- Begin Page Header -->
-<div class="header">
-    <div class="container text-center">
-        <div class="navigation">
-            <a href="http://www.nida2.web2panel.com/index/" target="_blank" style="float: left"><img class="logo" src="assets/pack/img/server/logo_text.png"></a>
-            <ul style="float: right;border-bottom:0px;-webkit-box-shadow: inset 0px 0px 0px rgba(255,255,255,0.2);">
-                <li>
-                    <a href="http://www.nida2.web2panel.com/index" target="_blank"><img src="assets/pack/img/icon/google.png"><span>Anasayfa</span></a>
-                </li>
-				<li>
-                    <a href="https://www.facebook.com/serversayfa" target="_blank"><img src="assets/pack/img/icon/facebook.png"><span>Facebook</span></a>
-                </li>
-				<li>
-                    <a href="https://www.facebook.com/groups/servergrup" target="_blank"><img src="assets/pack/img/icon/facebook.png"><span>Facebook Grup</span></a>
-                </li>
-                <li>
-                    <a href="https://www.instagram.com/serverinsta" target="_blank"><img src="assets/pack/img/icon/instagram.png"><span>İnstagram</span></a>
-                </li>
-                <li>
-                    <a href="https://discord.gg/serveradı" target="_blank"><img src="assets/pack/img/icon/discord.png"><span>Discord</span></a>
-                </li>
-            </ul>
-            <div class="clearfix"></div>
-        </div>
+<div class="notices">
+    <h2>DUYURULAR</h2>
+    <div id="notice-list">
+        <div class="message">Duyurular yükleniyor...</div>
     </div>
-</div>
-<div class="clearfix"></div>
-<!-- End Page Header -->
-<div class="content">
-	<div class="container">
-		<div class="row">
-			<div class="col-xs-12">
-				<div class="row">
-					<div class="col-xs-7">
-						<h3 class="section-title margin-bottom-10">
-							<img src="assets/pack/img/icon/duyuru.png" alt="">
-							Duyurular
-						</h3>
-
-						<div class="padding-6 new launcher-announcements">
-							<ul id="launcher-announcement-list" class="list-group no-margin-bottom">
-								<li class="list-group-item launcher-announcement-message">
-									Duyurular yükleniyor...
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-xs-5">
-						<h3 class="section-title margin-bottom-15">
-							<img src="assets/pack/img/icon/takvim.png">
-							Etkinlik Takvimi
-						</h3>
-						<div class="padding-6 new">
-							<ul class="list-group no-margin-bottom">
-									<li class="list-group-item padding-top-9 padding-bottom-9 padding-right-5 margin-bottom-10">
-									<span class="badge no-radius">Pazartesi 20:00/21:00</span>
-									<a class="font-size-12 content-text" href="https://www.nida2.web2panel.com/index" target="_blank">
-										Ay Işığı Etkinliği									</a>
-								</li>
-									<li class="list-group-item padding-top-9 padding-bottom-9 padding-right-5 margin-bottom-10">
-									<span class="badge no-radius">Salı 20:00/21:00</span>
-									<a class="font-size-12 content-text" href="https://www.nida2.web2panel.com/index" target="_blank">
-										Futbol Etkinliği									</a>
-								</li>
-									<li class="list-group-item padding-top-9 padding-bottom-9 padding-right-5 margin-bottom-10">
-									<span class="badge no-radius">Çarşamba 20:00/21:00</span>
-									<a class="font-size-12 content-text" href="https://www.nida2.web2panel.com/index" target="_blank">
-										Paskalya Etkinliği									</a>
-								</li>
-									<li class="list-group-item padding-top-9 padding-bottom-9 padding-right-5 margin-bottom-10">
-									<span class="badge no-radius">Perşembe 20:00/21:00</span>
-									<a class="font-size-12 content-text" href="https://www.nida2.web2panel.com/index" target="_blank">
-										Altıgen Etkinliği									</a>
-								</li>
-									<li class="list-group-item padding-top-9 padding-bottom-9 padding-right-5 margin-bottom-10">
-									<span class="badge no-radius">Cuma 20:00/21:00</span>
-									<a class="font-size-12 content-text" href="https://www.nida2.web2panel.com/index" target="_blank">
-										Hediye Paketi Etkinliği									</a>
-								</li>
-									<li class="list-group-item padding-top-9 padding-bottom-9 padding-right-5 margin-bottom-10">
-									<span class="badge no-radius" >Cumartesi 20:00/21:00</span>
-									<a class="font-size-12 content-text" href="https://www.nida2.web2panel.com/index" target="_blank">
-										Zafer Sandığı Etkinliği									</a>
-								</li>
-									<li class="list-group-item padding-top-9 padding-bottom-9 padding-right-5 margin-bottom-10">
-									<span class="badge no-radius">Pazar 20:00/21:00</span>
-									<a class="font-size-12 content-text" href="https://www.nida2.web2panel.com/index" target="_blank">
-										Kuzey Kutusu Etkinliği									</a>
-								</li>
-								</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 </div>
 
 <script type="text/javascript">
 (function () {
-    var list = document.getElementById("launcher-announcement-list");
+    var container = document.getElementById("notice-list");
 
     function escapeHtml(value) {
         return String(value)
@@ -202,18 +116,12 @@
 
     function safeLink(value) {
         var link = String(value || "#");
-        if (/^(https?:\/\/|#)/i.test(link)) {
-            return escapeHtml(link);
-        }
-        return "#";
+        return /^(https?:\/\/|#)/i.test(link) ? escapeHtml(link) : "#";
     }
 
     function render(items) {
         if (!items || !items.length) {
-            list.innerHTML =
-                '<li class="list-group-item launcher-announcement-message">' +
-                'Henüz duyuru bulunmuyor.' +
-                '</li>';
+            container.innerHTML = '<div class="message">Henüz duyuru yok.</div>';
             return;
         }
 
@@ -227,42 +135,32 @@
             var link = safeLink(item.link);
 
             html +=
-                '<li class="list-group-item">' +
-                    '<span class="launcher-announcement-bullet">◆</span>' +
-                    '<a class="launcher-announcement-title" ' +
-                       'href="' + link + '" target="_blank" title="' + title + '">' +
+                '<div class="notice-item">' +
+                    '<span class="bullet">◆</span>' +
+                    '<a class="title" href="' + link + '" target="_blank" title="' + title + '">' +
                         title +
                     '</a>' +
-                    '<span class="launcher-announcement-date">[' + date + ']</span>' +
-                '</li>';
+                    '<span class="date">[' + date + ']</span>' +
+                '</div>';
         }
 
-        list.innerHTML = html;
+        container.innerHTML = html;
     }
 
     function showError() {
-        list.innerHTML =
-            '<li class="list-group-item launcher-announcement-message">' +
-            'Duyurular yüklenemedi.' +
-            '</li>';
+        container.innerHTML = '<div class="message">Duyurular yüklenemedi.</div>';
     }
 
     var xhr = new XMLHttpRequest();
-    xhr.open(
-        "GET",
-        "duyurular.json?v=" + new Date().getTime(),
-        true
-    );
+    xhr.open("GET", "duyurular.json?v=" + new Date().getTime(), true);
 
     xhr.onreadystatechange = function () {
-        if (xhr.readyState !== 4) {
-            return;
-        }
+        if (xhr.readyState !== 4) return;
 
         if (xhr.status >= 200 && xhr.status < 300) {
             try {
                 render(JSON.parse(xhr.responseText));
-            } catch (error) {
+            } catch (e) {
                 showError();
             }
         } else {
@@ -273,6 +171,5 @@
     xhr.send(null);
 })();
 </script>
-
 </body>
 </html>

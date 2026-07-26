@@ -8,7 +8,7 @@ header('Content-Type: text/html; charset=UTF-8');
 | Kendi site veritabanı bilgilerine göre düzenle.
 */
 
-$dbHost = 'localhost';
+$dbHost = '77.83.37.72';
 $dbUser = 'site_kullanici';
 $dbPass = 'site_sifre';
 $dbName = 'site_veritabani';

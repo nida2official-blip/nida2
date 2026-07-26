@@ -9,9 +9,9 @@ header('Content-Type: text/html; charset=UTF-8');
 */
 
 $dbHost = '77.83.37.72';
-$dbUser = 'site_kullanici';
-$dbPass = 'site_sifre';
-$dbName = 'site_veritabani';
+$dbUser = 'root';
+$dbPass = '123';
+$dbName = 'account';
 
 $mysqli = new mysqli($dbHost, $dbUser, $dbPass, $dbName);
 

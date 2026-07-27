@@ -1,26 +1,150 @@
-<!DOCTYPE html><html lang='tr'><head><meta charset='utf-8'>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=9">
-<style>
-html,body{margin:0;padding:0;width:228px;height:210px;overflow:hidden;background:#080604;font-family:Arial}
-.wrap{width:228px;height:210px;border:1px solid #6f6038;background:#11100e;box-sizing:border-box;padding:5px}
-.title{height:20px;line-height:18px;color:#d9bf6d;border-bottom:1px solid #816d3d;font-size:12px}
-.row{position:relative;height:22px;margin-top:3px;background:#1d1d1c;border-bottom:1px solid #806d3b}
-.name{position:absolute;left:6px;top:5px;width:110px;overflow:hidden;white-space:nowrap;color:#e0c55e;font-size:9px}
-.when{position:absolute;right:4px;top:3px;background:#9a8449;color:#17130c;padding:2px 4px;font-size:8px;white-space:nowrap}
-</style></head><body><div class='wrap'><div class='title'>Etkinlik Takvimi</div><div id='list'></div></div>
-<script>
-var x=new XMLHttpRequest();
-x.open('GET','etkinlikler.json?'+Date.now(),true);
-x.onreadystatechange=function(){
-if(x.readyState!=4)return;
-var l=document.getElementById('list');
-try{
-var d=JSON.parse(x.responseText),h='';
-for(var i=0;i<d.length&&i<7;i++){
-h+="<div class='row'><div class='name'>"+d[i].name+"</div><div class='when'>"+d[i].day+" "+d[i].time+"</div></div>";
+<title>Etkinlik Takvimi</title>
+<style type="text/css">
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 228px;
+    height: 210px;
+    overflow: hidden;
+    background: #080604;
+    font-family: Arial, Helvetica, sans-serif;
 }
-l.innerHTML=h;
-}catch(e){l.innerHTML='Yüklenemedi';}
-};
-x.send();
-</script></body></html>
+* { box-sizing: border-box; }
+
+.wrap {
+    width: 228px;
+    height: 210px;
+    border: 1px solid #6f6038;
+    background: #11100e;
+    padding: 5px;
+}
+
+.title {
+    height: 20px;
+    line-height: 18px;
+    color: #d9bf6d;
+    border-bottom: 1px solid #816d3d;
+    font-size: 12px;
+    padding-left: 3px;
+}
+
+.loading,
+.error {
+    padding: 10px 6px;
+    color: #d9bf6d;
+    font-size: 10px;
+}
+
+.row {
+    position: relative;
+    height: 22px;
+    margin-top: 3px;
+    background: #1d1d1c;
+    border-bottom: 1px solid #806d3b;
+}
+
+.name {
+    position: absolute;
+    left: 6px;
+    top: 5px;
+    width: 110px;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #e0c55e;
+    font-size: 9px;
+}
+
+.when {
+    position: absolute;
+    right: 4px;
+    top: 3px;
+    background: #9a8449;
+    color: #17130c;
+    padding: 2px 4px;
+    font-size: 8px;
+    white-space: nowrap;
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+    <div class="title">Etkinlik Takvimi</div>
+    <div id="list" class="loading">Etkinlikler yükleniyor...</div>
+</div>
+
+<script type="text/javascript">
+(function () {
+    var list = document.getElementById("list");
+
+    function clean(value) {
+        value = String(value);
+        value = value.replace(/&/g, "&amp;");
+        value = value.replace(/</g, "&lt;");
+        value = value.replace(/>/g, "&gt;");
+        value = value.replace(/"/g, "&quot;");
+        return value;
+    }
+
+    function draw(data) {
+        var html = "";
+        var i, eventItem;
+
+        for (i = 0; i < data.length && i < 7; i++) {
+            eventItem = data[i];
+
+            html += '<div class="row">';
+            html += '<div class="name">' + clean(eventItem.name) + '</div>';
+            html += '<div class="when">' +
+                    clean(eventItem.day) + ' ' +
+                    clean(eventItem.time) +
+                    '</div>';
+            html += '</div>';
+        }
+
+        list.className = "";
+        list.innerHTML = html;
+    }
+
+    function showError() {
+        list.className = "error";
+        list.innerHTML = "Etkinlikler yüklenemedi.";
+    }
+
+    try {
+        var xhr = new XMLHttpRequest();
+        xhr.open(
+            "GET",
+            "etkinlikler.json?x=" + new Date().getTime(),
+            true
+        );
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState != 4) {
+                return;
+            }
+
+            if (xhr.status == 200 || xhr.status == 0) {
+                try {
+                    draw(JSON.parse(xhr.responseText));
+                } catch (error) {
+                    showError();
+                }
+            } else {
+                showError();
+            }
+        };
+
+        xhr.send(null);
+    } catch (error) {
+        showError();
+    }
+}());
+</script>
+</body>
+</html>

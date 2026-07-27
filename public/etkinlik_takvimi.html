@@ -6,8 +6,8 @@
 <title>Etkinlik Takvimi</title>
 <style type="text/css">
 html, body {
-    width: 270px;
-    height: 310px;
+    width: 220px;
+    height: 150px;
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -16,55 +16,56 @@ html, body {
 }
 * { box-sizing: border-box; }
 .wrap {
-    width: 270px;
-    height: 310px;
-    padding: 8px 9px;
+    width: 220px;
+    height: 150px;
+    padding: 4px 5px;
     border: 1px solid #6f6038;
     background: #11100e;
 }
 .title {
-    height: 27px;
-    line-height: 22px;
-    padding-left: 4px;
+    height: 20px;
+    line-height: 16px;
+    padding-left: 3px;
     color: #d9bf6d;
-    font-size: 14px;
+    font-size: 11px;
     border-bottom: 1px solid #816d3d;
 }
 .row {
     position: relative;
-    width: 250px;
-    height: 34px;
-    margin-top: 5px;
+    width: 208px;
+    height: 16px;
+    margin-top: 2px;
     background: #1d1d1c;
     border-bottom: 1px solid #806d3b;
 }
 .name {
     position: absolute;
-    left: 12px;
-    top: 10px;
-    width: 128px;
-    height: 15px;
+    left: 5px;
+    top: 3px;
+    width: 104px;
+    height: 11px;
     overflow: hidden;
     color: #e0c55e;
-    font-size: 11px;
+    font-size: 8px;
+    line-height: 10px;
     white-space: nowrap;
 }
 .when {
     position: absolute;
-    right: 5px;
-    top: 8px;
-    height: 18px;
-    line-height: 18px;
-    padding: 0 6px;
+    right: 3px;
+    top: 2px;
+    height: 12px;
+    line-height: 12px;
+    padding: 0 3px;
     background: #9a8449;
     color: #17130c;
-    font-size: 10px;
+    font-size: 7px;
     white-space: nowrap;
 }
 .error {
-    padding: 12px;
+    padding: 8px;
     color: #d9bf6d;
-    font-size: 11px;
+    font-size: 9px;
 }
 </style>
 </head>
@@ -89,7 +90,7 @@ html, body {
     function draw(data) {
         var html = "";
         var i, e;
-        for (i = 0; i < data.length; i++) {
+        for (i = 0; i < data.length && i < 7; i++) {
             e = data[i];
             html += '<div class="row">';
             html += '<div class="name">' + clean(e.name) + '</div>';
@@ -100,7 +101,7 @@ html, body {
     }
 
     function errorText() {
-        list.innerHTML = '<div class="error">Etkinlik takvimi yüklenemedi.</div>';
+        list.innerHTML = '<div class="error">Takvim yüklenemedi.</div>';
     }
 
     try {

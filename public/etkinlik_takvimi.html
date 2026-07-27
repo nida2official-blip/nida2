@@ -1,130 +1,128 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=9">
 <title>Etkinlik Takvimi</title>
-<style>
-*{box-sizing:border-box}
-html,body{
-    margin:0;
-    width:100%;
-    height:100%;
-    overflow:hidden;
-    background:#090806;
-    font-family:Arial,Helvetica,sans-serif;
-    color:#d8bd68;
+<style type="text/css">
+html, body {
+    width: 270px;
+    height: 310px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #080604;
+    font-family: Arial, Helvetica, sans-serif;
 }
-.calendar{
-    width:100%;
-    height:100%;
-    padding:9px 10px 10px;
-    background:
-      linear-gradient(rgba(10,10,10,.72),rgba(10,10,10,.82)),
-      radial-gradient(circle at 22% 10%,rgba(255,255,255,.10),transparent 46%),
-      #11100e;
-    border:1px solid #76683d;
+* { box-sizing: border-box; }
+.wrap {
+    width: 270px;
+    height: 310px;
+    padding: 8px 9px;
+    border: 1px solid #6f6038;
+    background: #11100e;
 }
-.title{
-    height:28px;
-    line-height:23px;
-    padding:0 4px 5px;
-    border-bottom:1px solid #8b7641;
-    font-size:14px;
-    color:#d9bf6d;
-    white-space:nowrap;
+.title {
+    height: 27px;
+    line-height: 22px;
+    padding-left: 4px;
+    color: #d9bf6d;
+    font-size: 14px;
+    border-bottom: 1px solid #816d3d;
 }
-.title .icon{margin-right:7px}
-.list{
-    height:calc(100% - 31px);
-    padding-top:6px;
-    display:flex;
-    flex-direction:column;
-    gap:5px;
+.row {
+    position: relative;
+    width: 250px;
+    height: 34px;
+    margin-top: 5px;
+    background: #1d1d1c;
+    border-bottom: 1px solid #806d3b;
 }
-.row{
-    min-height:0;
-    flex:1 1 0;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 6px 0 14px;
-    background:linear-gradient(90deg,rgba(31,31,30,.96),rgba(20,20,20,.92));
-    border-bottom:1px solid #8a753d;
-    border-radius:3px 0 0 3px;
+.name {
+    position: absolute;
+    left: 12px;
+    top: 10px;
+    width: 128px;
+    height: 15px;
+    overflow: hidden;
+    color: #e0c55e;
+    font-size: 11px;
+    white-space: nowrap;
 }
-.name{
-    padding-right:8px;
-    font-size:12px;
-    color:#e0c55e;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
+.when {
+    position: absolute;
+    right: 5px;
+    top: 8px;
+    height: 18px;
+    line-height: 18px;
+    padding: 0 6px;
+    background: #9a8449;
+    color: #17130c;
+    font-size: 10px;
+    white-space: nowrap;
 }
-.when{
-    flex:0 0 auto;
-    padding:3px 7px;
-    background:#9a8449;
-    color:#19150d;
-    font-size:11px;
-    line-height:1;
-    white-space:nowrap;
-}
-.error{
-    padding:14px;
-    color:#d9bf6d;
-    font-size:12px;
+.error {
+    padding: 12px;
+    color: #d9bf6d;
+    font-size: 11px;
 }
 </style>
 </head>
 <body>
-<div class="calendar">
-    <div class="title"><span class="icon">🗓️</span>Etkinlik Takvimi</div>
-    <div id="list" class="list"></div>
+<div class="wrap">
+    <div class="title">Etkinlik Takvimi</div>
+    <div id="list"></div>
 </div>
-
-<script>
+<script type="text/javascript">
 (function () {
     var list = document.getElementById("list");
 
-    function esc(s) {
-        return String(s)
-            .replace(/&/g,"&amp;")
-            .replace(/</g,"&lt;")
-            .replace(/>/g,"&gt;")
-            .replace(/"/g,"&quot;");
+    function clean(v) {
+        v = String(v);
+        v = v.replace(/&/g, "&amp;");
+        v = v.replace(/</g, "&lt;");
+        v = v.replace(/>/g, "&gt;");
+        v = v.replace(/"/g, "&quot;");
+        return v;
     }
 
-    function render(data) {
-        list.innerHTML = "";
-        for (var i = 0; i < data.length; i++) {
-            var e = data[i];
-            var row = document.createElement("div");
-            row.className = "row";
-            row.innerHTML =
-                '<div class="name">' + esc(e.name) + '</div>' +
-                '<div class="when">' + esc(e.day) + ' ' + esc(e.time) + '</div>';
-            list.appendChild(row);
+    function draw(data) {
+        var html = "";
+        var i, e;
+        for (i = 0; i < data.length; i++) {
+            e = data[i];
+            html += '<div class="row">';
+            html += '<div class="name">' + clean(e.name) + '</div>';
+            html += '<div class="when">' + clean(e.day) + ' ' + clean(e.time) + '</div>';
+            html += '</div>';
         }
+        list.innerHTML = html;
     }
 
-    function fail() {
+    function errorText() {
         list.innerHTML = '<div class="error">Etkinlik takvimi yüklenemedi.</div>';
     }
 
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "etkinlikler.json?v=" + new Date().getTime(), true);
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState !== 4) return;
-        if (xhr.status >= 200 && xhr.status < 300) {
-            try { render(JSON.parse(xhr.responseText)); }
-            catch (e) { fail(); }
-        } else {
-            fail();
-        }
-    };
-    xhr.send(null);
+    try {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "etkinlikler.json?x=" + new Date().getTime(), true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200 || xhr.status == 0) {
+                    try {
+                        draw(JSON.parse(xhr.responseText));
+                    } catch (err) {
+                        errorText();
+                    }
+                } else {
+                    errorText();
+                }
+            }
+        };
+        xhr.send(null);
+    } catch (e) {
+        errorText();
+    }
 }());
 </script>
 </body>

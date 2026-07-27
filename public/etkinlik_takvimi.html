@@ -1,130 +1,26 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-<meta charset="utf-8">
+<!DOCTYPE html><html lang='tr'><head><meta charset='utf-8'>
 <meta http-equiv="X-UA-Compatible" content="IE=9">
-<title>Etkinlik Takvimi</title>
-<style type="text/css">
-html, body {
-    width: 228px;
-    height: 210px;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background: #080604;
-    font-family: Arial, Helvetica, sans-serif;
+<style>
+html,body{margin:0;padding:0;width:228px;height:210px;overflow:hidden;background:#080604;font-family:Arial}
+.wrap{width:228px;height:210px;border:1px solid #6f6038;background:#11100e;box-sizing:border-box;padding:5px}
+.title{height:20px;line-height:18px;color:#d9bf6d;border-bottom:1px solid #816d3d;font-size:12px}
+.row{position:relative;height:22px;margin-top:3px;background:#1d1d1c;border-bottom:1px solid #806d3b}
+.name{position:absolute;left:6px;top:5px;width:110px;overflow:hidden;white-space:nowrap;color:#e0c55e;font-size:9px}
+.when{position:absolute;right:4px;top:3px;background:#9a8449;color:#17130c;padding:2px 4px;font-size:8px;white-space:nowrap}
+</style></head><body><div class='wrap'><div class='title'>Etkinlik Takvimi</div><div id='list'></div></div>
+<script>
+var x=new XMLHttpRequest();
+x.open('GET','etkinlikler.json?'+Date.now(),true);
+x.onreadystatechange=function(){
+if(x.readyState!=4)return;
+var l=document.getElementById('list');
+try{
+var d=JSON.parse(x.responseText),h='';
+for(var i=0;i<d.length&&i<7;i++){
+h+="<div class='row'><div class='name'>"+d[i].name+"</div><div class='when'>"+d[i].day+" "+d[i].time+"</div></div>";
 }
-* { box-sizing: border-box; }
-.wrap {
-    width: 228px;
-    height: 210px;
-    padding: 4px 5px;
-    border: 1px solid #6f6038;
-    background: #11100e;
-}
-.title {
-    height: 20px;
-    line-height: 16px;
-    padding-left: 3px;
-    color: #d9bf6d;
-    font-size: 11px;
-    border-bottom: 1px solid #816d3d;
-}
-.row {
-    position: relative;
-    width: 208px;
-    height: 16px;
-    margin-top: 2px;
-    background: #1d1d1c;
-    border-bottom: 1px solid #806d3b;
-}
-.name {
-    position: absolute;
-    left: 5px;
-    top: 3px;
-    width: 104px;
-    height: 11px;
-    overflow: hidden;
-    color: #e0c55e;
-    font-size: 8px;
-    line-height: 10px;
-    white-space: nowrap;
-}
-.when {
-    position: absolute;
-    right: 3px;
-    top: 2px;
-    height: 12px;
-    line-height: 12px;
-    padding: 0 3px;
-    background: #9a8449;
-    color: #17130c;
-    font-size: 7px;
-    white-space: nowrap;
-}
-.error {
-    padding: 8px;
-    color: #d9bf6d;
-    font-size: 9px;
-}
-</style>
-</head>
-<body>
-<div class="wrap">
-    <div class="title">Etkinlik Takvimi</div>
-    <div id="list"></div>
-</div>
-<script type="text/javascript">
-(function () {
-    var list = document.getElementById("list");
-
-    function clean(v) {
-        v = String(v);
-        v = v.replace(/&/g, "&amp;");
-        v = v.replace(/</g, "&lt;");
-        v = v.replace(/>/g, "&gt;");
-        v = v.replace(/"/g, "&quot;");
-        return v;
-    }
-
-    function draw(data) {
-        var html = "";
-        var i, e;
-        for (i = 0; i < data.length && i < 7; i++) {
-            e = data[i];
-            html += '<div class="row">';
-            html += '<div class="name">' + clean(e.name) + '</div>';
-            html += '<div class="when">' + clean(e.day) + ' ' + clean(e.time) + '</div>';
-            html += '</div>';
-        }
-        list.innerHTML = html;
-    }
-
-    function errorText() {
-        list.innerHTML = '<div class="error">Takvim yüklenemedi.</div>';
-    }
-
-    try {
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", "etkinlikler.json?x=" + new Date().getTime(), true);
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4) {
-                if (xhr.status == 200 || xhr.status == 0) {
-                    try {
-                        draw(JSON.parse(xhr.responseText));
-                    } catch (err) {
-                        errorText();
-                    }
-                } else {
-                    errorText();
-                }
-            }
-        };
-        xhr.send(null);
-    } catch (e) {
-        errorText();
-    }
-}());
-</script>
-</body>
-</html>
+l.innerHTML=h;
+}catch(e){l.innerHTML='Yüklenemedi';}
+};
+x.send();
+</script></body></html>

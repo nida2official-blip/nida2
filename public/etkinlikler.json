@@ -1,0 +1,44 @@
+[
+  {
+    "icon": "sun",
+    "name": "Ay Işığı Etkinliği",
+    "day": "Pazartesi",
+    "time": "20:00"
+  },
+  {
+    "icon": "football",
+    "name": "Futbol Etkinliği",
+    "day": "Salı",
+    "time": "20:00"
+  },
+  {
+    "icon": "easter",
+    "name": "Paskalya Etkinliği",
+    "day": "Çarşamba",
+    "time": "20:00"
+  },
+  {
+    "icon": "hexagon",
+    "name": "Altıgen Etkinliği",
+    "day": "Perşembe",
+    "time": "20:00"
+  },
+  {
+    "icon": "gift",
+    "name": "Hediye Paketi Etkinliği",
+    "day": "Cuma",
+    "time": "20:00"
+  },
+  {
+    "icon": "victory",
+    "name": "Zafer Sandığı Etkinliği",
+    "day": "Cumartesi",
+    "time": "20:00"
+  },
+  {
+    "icon": "north",
+    "name": "Kuzey Kutusu Etkinliği",
+    "day": "Pazar",
+    "time": "20:00"
+  }
+]
